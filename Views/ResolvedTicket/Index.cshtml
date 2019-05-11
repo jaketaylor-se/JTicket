@@ -1,0 +1,23 @@
+﻿@model IEnumerable<JTicket.Models.Ticket>
+
+@{
+    ViewBag.Title = "Resolved Tickets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Resolved Tickets</h2>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ticket</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)    // Execution and query begins here
+        {
+            <tr>
+                <td>@t.Title</td>
+            </tr>
+        }
+    </tbody>
+</table>
