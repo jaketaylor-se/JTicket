@@ -6,18 +6,25 @@
 }
 
 <h2>Resolved Tickets</h2>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Ticket</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var t in Model)    // Execution and query begins here
-        {
+@if (!Model.Any())    // If there are no open tickets
+{
+    <p>There are currently no resolved tickets.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
             <tr>
-                <td>@t.Title</td>
+                <th>Ticket</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var t in Model)    // Execution and query begins here
+            {
+            <tr>
+                <td>@Html.ActionLink(t.Title, "Details", "ResolvedTicket", new { id = t.Id }, null)</td>    @*Link to details*@
+            </tr>
+            }
+        </tbody>
+    </table>
+}

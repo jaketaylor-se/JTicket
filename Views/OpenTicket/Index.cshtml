@@ -5,20 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Open Tickets</h2>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Ticket</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var t in Model)    // Execution and query begins here
-        {
+<h2>Open Tickets</h2>    @* Page header*@
+@if (!Model.Any())    // If there are no open tickets
+{
+    <p>There are currently no open tickets.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
             <tr>
-                <td>@t.Title</td>
+                <th>Ticket</th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var t in Model)    // Execution and query begins here
+            {
+                <tr>
+                    <td>@Html.ActionLink(t.Title, "Details", "OpenTicket", new { id = t.Id }, null)</td>    @*Link to details*@
+                </tr>
+            }
+        </tbody>
+    </table>
+}

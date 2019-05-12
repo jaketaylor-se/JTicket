@@ -16,5 +16,7 @@ namespace JTicket.Views
 
             return View(tickets.Where(d => d.isOpen == false));
         }
+
+
     }
 }

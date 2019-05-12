@@ -23,5 +23,15 @@ namespace JTicket.Controllers
             _context.Dispose();    // Disposable object
         }
 
+        public ActionResult Details(int id)
+        {
+            var customer = _context.Tickets.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            return View(customer);
+        }
+
     }
 }
