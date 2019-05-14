@@ -19,15 +19,24 @@ namespace JTicket.Models
 
     public class Ticket
     {
-        public string Description { get; set; }
-        public string Comments { get; set; }
+        [StringLength(500)]
+        public string Description { get; set; }    // strings are nullable
+
+        [StringLength(500)]
+        public string Comments{ get; set; }
+
+        [Required]
         public bool isOpen { get; set; }
 
         [Required]
         [Range(1, 5)]
         public Severity Severity { get; set; }
-        public DateTime? creationDate { get; set; }
-        public DateTime? lastModified { get; set; }
+
+        [Required]
+        public DateTime creationDate { get; set; }
+
+        [Required]
+        public DateTime lastModified { get; set; }
 
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

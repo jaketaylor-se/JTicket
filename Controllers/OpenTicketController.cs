@@ -31,19 +31,23 @@ namespace JTicket.Views
         }
 
         [HttpPost]   // Only callable by HTTP Post, not HTTP Get
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Ticket ticket)
         {
 
+            if (!ModelState.IsValid)    // Validation
+            {
+                var ViewModel = new TicketFormViewModel
+                {
+                    Ticket = ticket,   // The erroneous ticket
+                    severities = getSeverityList()
+                };
+
+                return View("TicketForm", ViewModel);
+            }
+
             if (ticket.Id == 0)    // This is a new ticket
             { 
-                if (ticket.creationDate == null)
-                    ticket.creationDate = DateTime.Now;
-
-                if (ticket.lastModified == null)
-                    ticket.lastModified = ticket.creationDate;
-
-                ticket.isOpen = true;
-
                 _context.Tickets.Add(ticket);   // Add change to transaction
             }
             else    // Ticket is in database
@@ -59,7 +63,7 @@ namespace JTicket.Views
                 ticketInDB.Description = ticket.Description;
                 ticketInDB.Comments = ticket.Comments;
                 ticketInDB.Severity = ticket.Severity;
-                ticketInDB.lastModified = DateTime.Now;
+                ticketInDB.isOpen = ticket.isOpen;
             }
 
             _context.SaveChanges();    // Save changes wrapped in transaction

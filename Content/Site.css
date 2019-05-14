@@ -22,3 +22,20 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* To change the color of the validation messages, the class must be defined */
+.field-validation-error
+{
+    color: red;
+}
+
+
+/* To change the color of the border of a form element when there is a validation
+    error
+*/
+.input-validation-error
+{
+    border: 2px solid red; 
+}
+

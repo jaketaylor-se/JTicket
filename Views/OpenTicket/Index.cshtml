@@ -12,9 +12,6 @@
 }
 else
 {
-    <p>
-        @Html.ActionLink("New Ticket", "New", "OpenTicket", null, new { @class = "btn btn-primary" })
-    </p>
 
     <table class="table table-bordered table-hover">
         <thead>
@@ -34,3 +31,6 @@ else
         </tbody>
     </table>
 }
+<p>
+    @Html.ActionLink("New Ticket", "New", "OpenTicket", null, new { @class = "btn btn-primary" })
+</p>
