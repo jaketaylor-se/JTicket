@@ -16,6 +16,7 @@ else
         <thead>
             <tr>
                 <th>Ticket</th>
+                <th>Severity</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@ else
             {
             <tr>
                 <td>@Html.ActionLink(t.Title, "Details", "ResolvedTicket", new { id = t.Id }, null)</td>    @*Link to details*@
+                <td>@t.Severity</td>
             </tr>
             }
         </tbody>

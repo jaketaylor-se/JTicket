@@ -175,17 +175,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905102125174_Initial.cs" />
-    <Compile Include="Migrations\201905102125174_Initial.Designer.cs">
-      <DependentUpon>201905102125174_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905102201368_AddTicketDescription.cs" />
-    <Compile Include="Migrations\201905102201368_AddTicketDescription.Designer.cs">
-      <DependentUpon>201905102201368_AddTicketDescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905102300524_ConsolidatedTicket.cs" />
-    <Compile Include="Migrations\201905102300524_ConsolidatedTicket.Designer.cs">
-      <DependentUpon>201905102300524_ConsolidatedTicket.cs</DependentUpon>
+    <Compile Include="Migrations\201905131951105_Initial.cs" />
+    <Compile Include="Migrations\201905131951105_Initial.Designer.cs">
+      <DependentUpon>201905131951105_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -197,6 +189,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\OpenTicketController.cs" />
+    <Compile Include="Views\ViewModels\NewTicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -258,10 +251,10 @@
     <Content Include="Views\OpenTicket\Index.cshtml" />
     <Content Include="Views\ResolvedTicket\Index.cshtml" />
     <Content Include="Views\Shared\Details.cshtml" />
+    <Content Include="Views\OpenTicket\TicketForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -277,14 +270,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905102125174_Initial.resx">
-      <DependentUpon>201905102125174_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905102201368_AddTicketDescription.resx">
-      <DependentUpon>201905102201368_AddTicketDescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905102300524_ConsolidatedTicket.resx">
-      <DependentUpon>201905102300524_ConsolidatedTicket.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905131951105_Initial.resx">
+      <DependentUpon>201905131951105_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -105,5 +105,3 @@ C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.dll
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.pdb
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.Initial.resources
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.csproj.GenerateResource.cache
-C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.AddTicketDescription.resources
-C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.ConsolidatedTicket.resources

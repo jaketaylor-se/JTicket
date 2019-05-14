@@ -12,17 +12,23 @@
 }
 else
 {
+    <p>
+        @Html.ActionLink("New Ticket", "New", "OpenTicket", null, new { @class = "btn btn-primary" })
+    </p>
+
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Ticket</th>
+                <th>Severity</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var t in Model)    // Execution and query begins here
             {
                 <tr>
-                    <td>@Html.ActionLink(t.Title, "Details", "OpenTicket", new { id = t.Id }, null)</td>    @*Link to details*@
+                    <td>@Html.ActionLink(t.Title, "Edit", "OpenTicket", new { id = t.Id }, null)</td>    @*Link to details*@
+                    <td>@t.Severity</td>
                 </tr>
             }
         </tbody>

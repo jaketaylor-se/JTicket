@@ -9,7 +9,7 @@ namespace JTicket.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(JTicket.Models.ApplicationDbContext context)
