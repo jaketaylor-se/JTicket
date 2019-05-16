@@ -57,6 +57,7 @@ else    // Editing an existing ticket
     @Html.HiddenFor(m => m.Ticket.creationDate)
     @Html.HiddenFor(m => m.Ticket.lastModified)
     @Html.HiddenFor(m => m.Ticket.isOpen)
+    @Html.AntiForgeryToken()
 
 
 

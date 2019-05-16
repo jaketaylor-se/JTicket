@@ -106,3 +106,11 @@ C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.pdb
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.Initial.resources
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.csproj.GenerateResource.cache
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.AddConstraints.resources
+C:\Users\jaket\source\repos\JTicket\bin\System.Net.Http.Formatting.dll
+C:\Users\jaket\source\repos\JTicket\bin\System.Web.Http.dll
+C:\Users\jaket\source\repos\JTicket\bin\System.Web.Http.WebHost.dll
+C:\Users\jaket\source\repos\JTicket\bin\System.Net.Http.Formatting.xml
+C:\Users\jaket\source\repos\JTicket\bin\System.Web.Http.xml
+C:\Users\jaket\source\repos\JTicket\bin\System.Web.Http.WebHost.xml
+C:\Users\jaket\source\repos\JTicket\bin\AutoMapper.dll
+C:\Users\jaket\source\repos\JTicket\bin\AutoMapper.xml

@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Http;
+using AutoMapper;
+using JTicket.App_Start;
+
 
 namespace JTicket
 {
@@ -12,6 +16,9 @@ namespace JTicket
     {
         protected void Application_Start()
         {
+            // Add mapping profile to global config
+            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
