@@ -12,6 +12,9 @@ using AutoMapper;
 
 
 /*
+ *  Web API for Ticket CRUD operations.
+ * 
+ * 
     Status Code for Resource Creation in RESTful convention: 201
     
      

@@ -29,7 +29,6 @@ namespace JTicket.Models
         public bool isOpen { get; set; }
 
         [Required]
-        [Range(1, 5)]
         public Severity Severity { get; set; }
 
         [Required]

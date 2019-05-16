@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201905140303100_AddConstraints.Designer.cs">
       <DependentUpon>201905140303100_AddConstraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905162011238_DebugSeverityConstraint.cs" />
+    <Compile Include="Migrations\201905162011238_DebugSeverityConstraint.Designer.cs">
+      <DependentUpon>201905162011238_DebugSeverityConstraint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -224,6 +228,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -251,6 +257,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -319,8 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905131951105_Initial.resx">
@@ -328,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905140303100_AddConstraints.resx">
       <DependentUpon>201905140303100_AddConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905162011238_DebugSeverityConstraint.resx">
+      <DependentUpon>201905162011238_DebugSeverityConstraint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
