@@ -1,42 +1,22 @@
-﻿@model IEnumerable<JTicket.Models.Ticket>
-
-@{
+﻿@{
     ViewBag.Title = "Open Tickets";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Open Tickets</h2>    @* Page header*@
-@if (!Model.Any())    // If there are no open tickets
-{
-    <p>There are currently no open tickets.</p>
-}
-else
-{
 
-    <table id="tickets" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Ticket</th>
-                <th>Severity</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var t in Model)    // Execution and query begins here
-            {
-                <tr>
-                    <td>@Html.ActionLink(t.Title, "Edit", "OpenTicket", new { id = t.Id }, null)</td>    @*Link to details*@
-                    <td>@t.Severity</td>
-                    <td>
+<table id="tickets" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ticket</th>
+            <th>Severity</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
-                        <button data-ticket-id="@t.Id" class="btn-link js-delete">Delete</button>
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
 <p>
     @Html.ActionLink("New Ticket", "New", "OpenTicket", null, new { @class = "btn btn-primary" })
 </p>
@@ -46,7 +26,57 @@ else
     <script>
         $(document).ready(function ()
         {
-            $("#tickets").on("click", "js-delete", function ()
+            $.fn.dataTable.enum( [ 'Very High', 'High', 'Medium', 'Low', 'Very Low' ] );
+            $("#tickets").DataTable(
+                {
+                    ajax:
+                    {
+                        url: "/api/tickets",
+                        dataSrc: ""
+                    },
+
+                    columns:
+                        [
+                            {
+                                data: "title",
+                                render: function (data, type, ticket) {
+                                    return "<a href='/OpenTicket/Edit/" + ticket.id + "'>" + ticket.title + "</a>"
+
+                                }
+                            },
+
+                            {
+                                data: "severity",
+                                render: function (data)
+                                {
+                                    switch (data)
+                                    {
+                                        case (1):
+                                            return "Very Low";
+                                        case (2):
+                                            return "Low";
+                                        case (3):
+                                            return "Medium";
+                                        case (4):
+                                            return "High";
+                                        case (5):
+                                            return "Very High"
+                                    }
+                                }
+                            },
+
+                            {
+                                data: "id",
+                                render: function (data)
+                                {
+                                    return "<button class='btn-link js-delete' data-ticket-id=" + data + ">Delete</button>"
+
+                                }
+
+                            }
+                        ]
+                });
+            $("#tickets").on("click", ".js-delete", function ()
             {
                 var button = $(this);
                 if (confirm("Are you sure you want to delete this ticket?")) 

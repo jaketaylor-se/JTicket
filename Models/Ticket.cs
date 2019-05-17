@@ -4,16 +4,27 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 namespace JTicket.Models
 {
     public enum Severity
     {
+        [Display(Name ="Very Low")]
         VeryLow = 1,
+
+        [Display(Name = "Low")]
         Low = 2,
+
+        [Display(Name = "Medium")]
         Medium = 3,
+
+        [Display(Name = "High")]
         High = 4,
+
+        [Display(Name = "Very High")]
         VeryHigh = 5
     }
 
@@ -29,6 +40,7 @@ namespace JTicket.Models
         public bool isOpen { get; set; }
 
         [Required]
+        [JsonConverter(typeof(StringEnumConverter))]
         public Severity Severity { get; set; }
 
         [Required]

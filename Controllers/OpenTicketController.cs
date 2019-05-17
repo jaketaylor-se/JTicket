@@ -15,9 +15,7 @@ namespace JTicket.Views
        
         public ActionResult Index()
         {
-            var tickets = _context.Tickets;   // Deferred execution unless ToList()
-
-            return View(tickets.Where(d => d.isOpen == true));
+            return View();
         }
 
         public ActionResult New()
