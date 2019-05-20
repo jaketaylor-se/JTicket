@@ -15,7 +15,9 @@ namespace JTicket
                         "~/Scripts/bootbox.js",
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/bootstrap4.datatables.js",
-                        "~/Scripts/datatables/enum.js"));
+                        "~/Scripts/datatables/enum.js",
+                        "~/Scripts/datatables/moment.js",
+                        "~/Scripts/datatables/datetime-moment.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

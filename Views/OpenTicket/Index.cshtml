@@ -10,7 +10,10 @@
         <tr>
             <th>Ticket</th>
             <th>Severity</th>
+            <th>Created</th>
+            <th>Last Modified</th>
             <th>Delete</th>
+
         </tr>
     </thead>
     <tbody>
@@ -26,9 +29,11 @@
     <script>
         $(document).ready(function ()
         {
-            $.fn.dataTable.enum( [ 'Very High', 'High', 'Medium', 'Low', 'Very Low' ] );
+            $.fn.dataTable.enum(['Very High', 'High', 'Medium', 'Low', 'Very Low']);
             $("#tickets").DataTable(
                 {
+                    "bInfo": false,
+
                     ajax:
                     {
                         url: "/api/tickets",
@@ -63,6 +68,31 @@
                                             return "Very High"
                                     }
                                 }
+                            },
+                            {
+                                data: "creationDate",
+                                render: function (data, type, row)
+                                {
+                                    if (type === "sort" || type === "type")
+                                    {
+                                        return data;
+                                    }
+
+                                    return moment(data).format("MM-DD-YYYY HH:mm:ss");
+                                }                      
+                            },
+
+                            {
+                                data: "lastModified",
+                                render: function (data, type, row)
+                                {
+                                    if (type === "sort" || type === "type")
+                                    {
+                                        return data;
+                                    }
+
+                                    return moment(data).format("MM-DD-YYYY HH:mm:ss");
+                                }                      
                             },
 
                             {

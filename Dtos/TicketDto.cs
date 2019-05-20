@@ -20,6 +20,12 @@ namespace JTicket.Dtos
         public bool isOpen { get; set; }
 
         [Required]
+        public DateTime creationDate { get; set; }
+
+        [Required]
+        public DateTime lastModified { get; set; }
+
+        [Required]
         [Range(1, 5)]
         public Severity Severity { get; set; }
 
