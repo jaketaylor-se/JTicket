@@ -12,8 +12,8 @@
             <th>Severity</th>
             <th>Created</th>
             <th>Last Modified</th>
+            <th>Resolve</th>
             <th>Delete</th>
-
         </tr>
     </thead>
     <tbody>
@@ -36,7 +36,7 @@
 
                     ajax:
                     {
-                        url: "/api/tickets",
+                        url: "/api/tickets?filter=open",
                         dataSrc: ""
                     },
 
@@ -77,7 +77,6 @@
                                     {
                                         return data;
                                     }
-
                                     return moment(data).format("MM-DD-YYYY HH:mm:ss");
                                 }                      
                             },
@@ -99,6 +98,15 @@
                                 data: "id",
                                 render: function (data)
                                 {
+                                    return "<button class='btn-link js-resolve' data-ticket-id=" + data + ">Resolve</button>"
+
+                                }
+                            },
+
+                            {
+                                data: "id",
+                                render: function (data)
+                                {
                                     return "<button class='btn-link js-delete' data-ticket-id=" + data + ">Delete</button>"
 
                                 }
@@ -114,6 +122,25 @@
                         {
                                 url: "/api/tickets/" + button.attr("data-ticket-id"),
                                 method: "DELETE",
+                                success: function ()
+                                {
+                                    // Delete from datatables internal list and redraw the table
+                                    // as opposed to merely deleting the DOM tr object
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                        });
+                }
+            });
+            
+            $("#tickets").on("click", ".js-resolve", function ()
+            {
+                var button = $(this);
+                if (confirm("Are you sure you want to resolve this ticket?")) 
+                { 
+                        $.ajax(
+                        {
+                                url: "/api/tickets/" + button.attr("data-ticket-id") + "?resolve=true",
+                                method: "PUT",
                                 success: function ()
                                 {
                                     // Delete from datatables internal list and redraw the table

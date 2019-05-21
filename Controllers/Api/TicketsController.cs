@@ -36,12 +36,28 @@ namespace JTicket.Controllers.Api
 
 
         // GET /api/tickets
-        public IHttpActionResult GetTickets()
+        public IHttpActionResult GetTickets(string filter="all")
         {
             // Pass Mapper as Delegate
             // Select Method: Projects each element of a sequence into a new form 
             // by incorporating the element's index.
-            return Ok(_context.Tickets.ToList().Select(Mapper.Map<Ticket, TicketDto>));
+
+            if (filter.Equals("all"))
+                return Ok(_context.Tickets
+                          .ToList()
+                          .Select(Mapper.Map<Ticket, TicketDto>));
+            else if (filter.Equals("open"))
+                return Ok(_context.Tickets
+                          .Where(t => t.isOpen == true)
+                          .ToList()
+                          .Select(Mapper.Map<Ticket, TicketDto>));
+            else if (filter.Equals("resolved"))
+                return Ok(_context.Tickets
+                          .Where(t => t.isOpen == false)
+                          .ToList()
+                          .Select(Mapper.Map<Ticket, TicketDto>));
+            else
+                return BadRequest();
         }
 
 
@@ -85,7 +101,7 @@ namespace JTicket.Controllers.Api
 
         // PUT /api/tickets/1
         [HttpPut]
-        public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto)  // id from URL
+        public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto, bool resolve=false)  // id from URL
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -98,6 +114,9 @@ namespace JTicket.Controllers.Api
             // No return type now
             Mapper.Map(ticketDto, ticketInDB);    // Compiler infers types
             ticketInDB.lastModified = DateTime.Now;
+
+            if (resolve)
+                ticketInDB.isOpen = false;
 
             _context.SaveChanges();
 

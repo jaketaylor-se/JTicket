@@ -40,7 +40,6 @@ namespace JTicket.Views
                     Ticket = ticket,   // The erroneous ticket
                     severities = getSeverityList()
                 };
-
                 return View("TicketForm", ViewModel);
             }
 
@@ -81,9 +80,20 @@ namespace JTicket.Views
                 Ticket = ticket,
                 severities = getSeverityList()
             };
-
-
             return View("TicketForm", ViewModel);    // Call the View to return the form
+        }
+
+        public ActionResult Resolve(int id)
+        {
+            var ticketInDB = _context.Tickets.SingleOrDefault(t => t.Id == id);
+
+            if (ticketInDB == null)
+                return HttpNotFound();
+
+            ticketInDB.isOpen = false;
+            _context.SaveChanges();
+            
+            return View("Index", "OpenTicket");    // Call the View to return the form
         }
 
         private IEnumerable<Severity> getSeverityList()

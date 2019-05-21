@@ -1,32 +1,124 @@
-﻿@model IEnumerable<JTicket.Models.Ticket>
-
-@{
+﻿@{
     ViewBag.Title = "Resolved Tickets";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Resolved Tickets</h2>
-@if (!Model.Any())    // If there are no open tickets
+<h2>Open Tickets</h2>    @* Page header*@
+
+<table id="tickets" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ticket</th>
+            <th>Severity</th>
+            <th>Created</th>
+            <th>Last Modified</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+@section scripts
 {
-    <p>There are currently no resolved tickets.</p>
-}
-else
-{
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Ticket</th>
-                <th>Severity</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var t in Model)    // Execution and query begins here
+    <script>
+        $(document).ready(function ()
+        {
+            $.fn.dataTable.enum(['Very High', 'High', 'Medium', 'Low', 'Very Low']);
+            var table = $("#tickets").DataTable(
+                {
+                    "bInfo": false,
+
+                    ajax:
+                    {
+                        url: "/api/tickets?filter=resolved",
+                        dataSrc: ""
+                    },
+
+                    columns:
+                        [
+                            {
+                                data: "title",
+                                render: function (data, type, ticket) {
+                                    return "<a href='/OpenTicket/Edit/" + ticket.id + "'>" + ticket.title + "</a>"
+
+                                }
+                            },
+
+                            {
+                                data: "severity",
+                                render: function (data)
+                                {
+                                    switch (data)
+                                    {
+                                        case (1):
+                                            return "Very Low";
+                                        case (2):
+                                            return "Low";
+                                        case (3):
+                                            return "Medium";
+                                        case (4):
+                                            return "High";
+                                        case (5):
+                                            return "Very High"
+                                    }
+                                }
+                            },
+                            {
+                                data: "creationDate",
+                                render: function (data, type, row)
+                                {
+                                    if (type === "sort" || type === "type")
+                                    {
+                                        return data;
+                                    }
+
+                                    return moment(data).format("MM-DD-YYYY HH:mm:ss");
+                                }
+                            },
+
+                            {
+                                data: "lastModified",
+                                render: function (data, type, row)
+                                {
+                                    if (type === "sort" || type === "type")
+                                    {
+                                        return data;
+                                    }
+
+                                    return moment(data).format("MM-DD-YYYY HH:mm:ss");
+                                }
+                            },
+
+                            {
+                                data: "id",
+                                render: function (data)
+                                {
+                                    return "<button class='btn-link js-delete' data-ticket-id=" + data + ">Delete</button>"
+
+                                }
+                            }
+                        ]
+                });
+            $("#tickets").on("click", ".js-delete", function ()
             {
-            <tr>
-                <td>@Html.ActionLink(t.Title, "Details", "ResolvedTicket", new { id = t.Id }, null)</td>    @*Link to details*@
-                <td>@t.Severity</td>
-            </tr>
-            }
-        </tbody>
-    </table>
+                var button = $(this);
+                if (confirm("Are you sure you want to delete this ticket?"))
+                {
+                        $.ajax(
+                        {
+                                url: "/api/tickets/" + button.attr("data-ticket-id"),
+                                method: "DELETE",
+                                success: function ()
+                                {
+                                    // Delete from datatables internal list and redraw the table
+                                    // as opposed to merely deleting the DOM tr object
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                        });
+                }
+            });
+        });
+    </script>
 }
