@@ -103,7 +103,7 @@ namespace JTicket.Controllers.Api
         // PUT /api/tickets/1
         [HttpPut]
         [Authorize(Roles = RoleName.CanManageTickets)]
-        public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto, bool resolve=false)  // id from URL
+        public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto, bool resolve=false, bool reopen=false)  // id from URL
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -117,8 +117,12 @@ namespace JTicket.Controllers.Api
             Mapper.Map(ticketDto, ticketInDB);    // Compiler infers types
             ticketInDB.lastModified = DateTime.Now;
 
-            if (resolve)
+            if (resolve & !reopen)
                 ticketInDB.isOpen = false;
+            else if (!resolve & reopen)
+                ticketInDB.isOpen = true;
+            else if ((!resolve & !reopen) || (resolve & reopen))
+                return BadRequest();
 
             _context.SaveChanges();
 

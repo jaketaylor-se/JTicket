@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JTicket.Controllers;
+using JTicket.Models;
 
 namespace JTicket.Views
 {
@@ -12,10 +13,14 @@ namespace JTicket.Views
 
         public ActionResult Index()
         {
-            var tickets = _context.Tickets;   // Deferred execution unless ToList()
+            if (User.IsInRole(RoleName.CanManageTickets))
+                return View("Index");
 
-            return View(tickets.Where(d => d.isOpen == false));
+            return View("ReadOnlyIndex");
         }
+
+
+
 
 
     }

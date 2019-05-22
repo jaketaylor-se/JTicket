@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Open Tickets</h2>    @* Page header*@
+<h2>Resolved Tickets</h2>    @* Page header*@
 
 <table id="tickets" class="table table-bordered table-hover">
     <thead>
@@ -12,8 +12,6 @@
             <th>Severity</th>
             <th>Created</th>
             <th>Last Modified</th>
-            <th>Reopen</th>
-            <th>Delete</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -58,7 +56,7 @@
                                         case (4):
                                             return "High";
                                         case (5):
-                                            return "Very High";
+                                            return "Very High"
                                     }
                                 }
                             },
@@ -87,63 +85,8 @@
                                     return moment(data).format("MM-DD-YYYY HH:mm:ss");
                                 }
                             },
-
-                            {
-                                data: "id",
-                                render: function (data)
-                                {
-                                    return "<button class='btn-link js-reopen' data-ticket-id=" + data + ">Reopen</button>"
-
-                                }
-                            },
-
-                            {
-                                data: "id",
-                                render: function (data)
-                                {
-                                    return "<button class='btn-link js-delete' data-ticket-id=" + data + ">Delete</button>"
-
-                                }
-                            }
                         ]
                 });
-            $("#tickets").on("click", ".js-delete", function ()
-            {
-                var button = $(this);
-                if (confirm("Are you sure you want to delete this ticket?"))
-                {
-                        $.ajax(
-                        {
-                                url: "/api/tickets/" + button.attr("data-ticket-id"),
-                                method: "DELETE",
-                                success: function ()
-                                {
-                                    // Delete from datatables internal list and redraw the table
-                                    // as opposed to merely deleting the DOM tr object
-                                    table.row(button.parents("tr")).remove().draw();
-                                }
-                        });
-                }
-            });
-
-            $("#tickets").on("click", ".js-reopen", function ()
-            {
-                var button = $(this);
-                if (confirm("Are you sure you want to reopen this ticket?"))
-                {
-                        $.ajax(
-                        {
-                                url: "/api/tickets/" + button.attr("data-ticket-id") + "?reopen=true",
-                                method: "PUT",
-                                success: function ()
-                                {
-                                    // Delete from datatables internal list and redraw the table
-                                    // as opposed to merely deleting the DOM tr object
-                                    table.row(button.parents("tr")).remove().draw();
-                                }
-                        });
-                }
-            });
         });
     </script>
 }
