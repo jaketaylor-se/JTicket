@@ -15,9 +15,13 @@ namespace JTicket.Views
        
         public ActionResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.CanManageTickets))
+                return View("Index");
+
+            return View("CreateOnlyIndex");
         }
 
+        [Authorize(Roles = RoleName.CanManageTickets)]
         public ActionResult New()
         {
             var ViewModel = new TicketFormViewModel
@@ -30,6 +34,7 @@ namespace JTicket.Views
 
         [HttpPost]   // Only callable by HTTP Post, not HTTP Get
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageTickets)]
         public ActionResult Save(Ticket ticket)
         {
 
@@ -68,6 +73,7 @@ namespace JTicket.Views
             return RedirectToAction("Index", "OpenTicket");
         }
 
+        [Authorize(Roles = RoleName.CanManageTickets)]
         public ActionResult Edit(int id)
         {
             var ticket = _context.Tickets.SingleOrDefault(t => t.Id == id);
@@ -83,6 +89,7 @@ namespace JTicket.Views
             return View("TicketForm", ViewModel);    // Call the View to return the form
         }
 
+        [Authorize(Roles = RoleName.CanManageTickets)]
         public ActionResult Resolve(int id)
         {
             var ticketInDB = _context.Tickets.SingleOrDefault(t => t.Id == id);

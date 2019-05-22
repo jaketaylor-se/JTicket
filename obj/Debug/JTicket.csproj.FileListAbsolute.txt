@@ -115,3 +115,4 @@ C:\Users\jaket\source\repos\JTicket\bin\System.Web.Http.WebHost.xml
 C:\Users\jaket\source\repos\JTicket\bin\AutoMapper.dll
 C:\Users\jaket\source\repos\JTicket\bin\AutoMapper.xml
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.DebugSeverityConstraint.resources
+C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.SeedUsers.resources

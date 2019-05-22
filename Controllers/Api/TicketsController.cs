@@ -34,7 +34,6 @@ namespace JTicket.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-
         // GET /api/tickets
         public IHttpActionResult GetTickets(string filter="all")
         {
@@ -75,8 +74,10 @@ namespace JTicket.Controllers.Api
         }
 
 
+
         // POST /api/tickets/1
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageTickets)]
         public IHttpActionResult CreateTicket(TicketDto ticketDto)    // ticket sent in request body
         {
             /* The return type is IHttpActionResult to give more control over
@@ -101,6 +102,7 @@ namespace JTicket.Controllers.Api
 
         // PUT /api/tickets/1
         [HttpPut]
+        [Authorize(Roles = RoleName.CanManageTickets)]
         public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto, bool resolve=false)  // id from URL
         {
             if (!ModelState.IsValid)
@@ -126,6 +128,7 @@ namespace JTicket.Controllers.Api
 
         // DELETE /api/ticket/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageTickets)]
         public IHttpActionResult DeleteTicket(int id)
         {
 

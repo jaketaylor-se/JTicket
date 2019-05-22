@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
