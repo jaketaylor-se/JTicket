@@ -1,0 +1,32 @@
+﻿@model JTicket.Models.Ticket
+@{
+    ViewBag.Title = "ViewTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+<h3>Description</h3>
+<p>
+    @Model.Description
+</p>
+
+<h3>Comments</h3>
+<p>
+    @Model.Comments
+</p>
+
+<h3>Severity</h3>
+<p>
+    @Model.Severity
+</p>
+
+<h3>Created</h3>
+<p>
+    @Model.creationDate
+</p>
+
+<h3>Last Modified</h3>
+<p>
+    @Model.lastModified
+</p>

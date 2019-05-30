@@ -116,3 +116,8 @@ C:\Users\jaket\source\repos\JTicket\bin\AutoMapper.dll
 C:\Users\jaket\source\repos\JTicket\bin\AutoMapper.xml
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.DebugSeverityConstraint.resources
 C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.SeedUsers.resources
+C:\Users\jaket\source\repos\JTicket\bin\Glimpse.Ado.dll
+C:\Users\jaket\source\repos\JTicket\bin\Glimpse.AspNet.dll
+C:\Users\jaket\source\repos\JTicket\bin\Glimpse.Core.dll
+C:\Users\jaket\source\repos\JTicket\bin\Glimpse.EF6.dll
+C:\Users\jaket\source\repos\JTicket\bin\Glimpse.Mvc5.dll

@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Open Tickets</h2>    @* Page header*@
+<h2>Resolved Tickets</h2>    @* Page header*@
 
 <table id="tickets" class="table table-bordered table-hover">
     <thead>
@@ -41,6 +41,11 @@
                         [
                             {
                                 data: "title",
+                                render: function (data, type, ticket) 
+                                {
+                                    return "<a href='/OpenTicket/Edit/" + ticket.id + "'>" + ticket.title + "</a>"
+
+                                }
                             },
 
                             {

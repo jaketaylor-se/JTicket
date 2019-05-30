@@ -21,6 +21,7 @@ namespace JTicket.Views
             return View("CreateOnlyIndex");
         }
 
+
         [Authorize(Roles = RoleName.CanManageTickets)]
         public ActionResult New()
         {

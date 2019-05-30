@@ -41,7 +41,11 @@
                     columns:
                         [
                             {
-                                data: "title"
+                                data: "title",
+                                render: function (data, type, ticket)
+                                {
+                                    return "<a href='/Ticket/ViewTicket/" + ticket.id + "'>" + ticket.title + "</a>"
+                                }
                             },
 
                             {

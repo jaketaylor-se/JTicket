@@ -33,5 +33,15 @@ namespace JTicket.Controllers
             return View(customer);
         }
 
+        public ActionResult ViewTicket(int id)
+        {
+            var ticket = _context.Tickets.SingleOrDefault(t => t.Id == id);
+
+            if (ticket == null)
+                return HttpNotFound();
+
+            return View("ViewTicket", ticket);    // Call the View to return the form
+        }
+
     }
 }

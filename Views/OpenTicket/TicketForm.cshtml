@@ -33,7 +33,7 @@ else    // Editing an existing ticket
 <div class="form-group">
 
     @Html.LabelFor(m => m.Ticket.Severity)
-    @Html.DropDownListFor(m => m.Ticket.Severity, new SelectList(Model.severities), "Select Severity", new { @class = "format-control" })
+    @Html.EnumDropDownListFor(m => m.Ticket.Severity, "Select Severity", new { @class = "format-control" })
     @Html.ValidationMessageFor(m => m.Ticket.Severity)
 </div>
 
