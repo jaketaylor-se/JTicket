@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+ *  Controller for the Ticket requests. Base class for the Controller
+ *  class ResolvedTicketController and OpenTicketController.
+ */
+
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+
 using JTicket.Models;
 
 
@@ -11,36 +14,56 @@ namespace JTicket.Controllers
     public class TicketController : Controller
     {
 
-        protected ApplicationDbContext _context;    // DB Context for DB access
+        protected ApplicationDbContext _context;    // DB context
 
+        /// <summary>
+        /// Method 
+        /// <c>TicketController</c> 
+        /// Constructor for the TicketController class.
+        /// </summary>
         public TicketController()
         {
-            _context = new ApplicationDbContext();    // Initialize DB context
+            _context = new ApplicationDbContext();    // Initialize context
         }
 
-        protected override void Dispose(bool disposing)  // Override base class 
+        /// <summary>
+        /// Method 
+        /// <c>Dispose</c> 
+        /// Dispose the context and close database connection.
+        /// </summary>
+        protected override void Dispose(bool disposing)  // Override 
         {
-            _context.Dispose();    // Disposable object
+            _context.Dispose();
         }
 
+        /// <summary>
+        /// Method 
+        /// <c>Details</c> 
+        /// Return the View for displaying ticket comments and descriptions.
+        /// </summary>
         public ActionResult Details(int id)
         {
-            var customer = _context.Tickets.SingleOrDefault(c => c.Id == id);
+            var ticket = _context.Tickets.SingleOrDefault(t => t.Id == id);
 
-            if (customer == null)
+            if (ticket == null)    // No ticket matching in database
                 return HttpNotFound();
 
-            return View(customer);
+            return View(ticket);
         }
 
+        /// <summary>
+        /// Method 
+        /// <c>ViewTicket</c> 
+        /// Return the View for displaying full ticket details.
+        /// </summary>
         public ActionResult ViewTicket(int id)
         {
             var ticket = _context.Tickets.SingleOrDefault(t => t.Id == id);
 
-            if (ticket == null)
+            if (ticket == null)    // No matching ticket in database
                 return HttpNotFound();
 
-            return View("ViewTicket", ticket);    // Call the View to return the form
+            return View("ViewTicket", ticket);   
         }
 
     }
