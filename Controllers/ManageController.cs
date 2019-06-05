@@ -1,4 +1,7 @@
-﻿
+﻿/*
+ *  Controller for handling requests for managing user accounts
+ *  (e.g. changing a password).
+ */
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
