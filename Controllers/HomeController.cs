@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿/*
+ *  Controller for the home page requests.
+ */
+
 using System.Web.Mvc;
 
-namespace demo.Controllers
+namespace JTicket.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller
     {
-
         public ActionResult Index()
         {
             return View();
