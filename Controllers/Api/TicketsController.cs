@@ -1,56 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+ *  Controller for RESTful web api. 
+ */
+
+using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+
 using JTicket.Models;
-using JTicket.App_Start;
 using JTicket.Dtos;
 using AutoMapper;
 
 
-
-/*
- *  Web API for Ticket CRUD operations.
- * 
- * 
-    Status Code for Resource Creation in RESTful convention: 201
-    
-     
-     
-     
-*/
-
 namespace JTicket.Controllers.Api
 {
-    public class TicketsController : ApiController    // Note Superclass name
+    /// <summary>
+    /// Class 
+    /// <c>TicketsController</c> 
+    /// Controller for handling request to web api.
+    /// </summary>
+    public class TicketsController : ApiController    
     {
 
-        private ApplicationDbContext _context;
+        private ApplicationDbContext _context;    // Context to database
 
+        /// <summary>
+        /// Method 
+        /// <c>TicketsController</c> 
+        /// Constructor for the TicketsController class.
+        /// </summary>
         public TicketsController()
         {
-            _context = new ApplicationDbContext();
+            _context = new ApplicationDbContext();    // Initialize context
         }
 
         // GET /api/tickets
         public IHttpActionResult GetTickets(string filter="all")
         {
             // Pass Mapper as Delegate
-            // Select Method: Projects each element of a sequence into a new form 
-            // by incorporating the element's index.
+            // Select Method: Projects each element of a sequence into a new 
+            // form by incorporating the element's index.
 
-            if (filter.Equals("all"))
+            if (filter.Equals("all"))    // Request is for all tickets
                 return Ok(_context.Tickets
                           .ToList()
                           .Select(Mapper.Map<Ticket, TicketDto>));
-            else if (filter.Equals("open"))
+
+            else if (filter.Equals("open"))    // Request is for open tickets
                 return Ok(_context.Tickets
                           .Where(t => t.isOpen == true)
                           .ToList()
                           .Select(Mapper.Map<Ticket, TicketDto>));
-            else if (filter.Equals("resolved"))
+
+            else if (filter.Equals("resolved"))    // Request resolved
                 return Ok(_context.Tickets
                           .Where(t => t.isOpen == false)
                           .ToList()
@@ -58,7 +59,6 @@ namespace JTicket.Controllers.Api
             else
                 return BadRequest();
         }
-
 
         // GET /api/tickets/1
         public IHttpActionResult GetTicket(int id)
@@ -73,84 +73,82 @@ namespace JTicket.Controllers.Api
             return Ok(Mapper.Map<Ticket, TicketDto>(ticket));
         }
 
-
-
         // POST /api/tickets/1
         [HttpPost]
         [Authorize(Roles = RoleName.CanManageTickets)]
-        public IHttpActionResult CreateTicket(TicketDto ticketDto)    // ticket sent in request body
+        public IHttpActionResult CreateTicket(TicketDto ticketDto) 
         {
             /* The return type is IHttpActionResult to give more control over
               the status code sent back to the client. */
             if (!ModelState.IsValid)
-                BadRequest();    // returns bad request result which implements the IHttpActionResultInterface
+                BadRequest();    // implements the IHttpActionResultInterface
 
-            var ticket = Mapper.Map<TicketDto, Ticket>(ticketDto);
+            // Map to dto to domain model
+            var ticket = Mapper.Map<TicketDto, Ticket>(ticketDto); 
 
+            // Update internal state data
             ticket.creationDate = DateTime.Now;
             ticket.lastModified = ticket.creationDate;
             ticket.isOpen = true;
 
+            // Add the new object to context and save changes
             _context.Tickets.Add(ticket);
             _context.SaveChanges();
 
             ticketDto.Id = ticket.Id;
 
-            return Created(new Uri(Request.RequestUri + "/" + ticket.Id), ticketDto);    // URI = Unified Resource Identifier
+            // Return Unified Resource Identifier
+            return Created(new Uri(Request.RequestUri + "/" + ticket.Id), 
+                                   ticketDto);    
         }
-
 
         // PUT /api/tickets/1
         [HttpPut]
         [Authorize(Roles = RoleName.CanManageTickets)]
-        public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto, bool resolve=false, bool reopen=false)  // id from URL
+        public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto, 
+                                              bool resolve=false, 
+                                              bool reopen=false)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
             var ticketInDB = _context.Tickets.SingleOrDefault(t => t.Id == id);
 
-            if (ticketInDB == null)
+            if (ticketInDB == null)    // No ticket found for this id
                 return NotFound();
 
             // No return type now
             Mapper.Map(ticketDto, ticketInDB);    // Compiler infers types
-            ticketInDB.lastModified = DateTime.Now;
+            ticketInDB.lastModified = DateTime.Now;  // Update modified stamp
 
-            if (resolve & !reopen)
+            if (resolve & !reopen)    // Resolve ticket
                 ticketInDB.isOpen = false;
-            else if (!resolve & reopen)
+            else if (!resolve & reopen)    // Reopen ticket
                 ticketInDB.isOpen = true;
             else if ((!resolve & !reopen) || (resolve & reopen))
                 return BadRequest();
 
-            _context.SaveChanges();
+            _context.SaveChanges();    // Persist changes
 
             return Ok();
         }
-
 
         // DELETE /api/ticket/1
         [HttpDelete]
         [Authorize(Roles = RoleName.CanManageTickets)]
         public IHttpActionResult DeleteTicket(int id)
         {
+            var ticketInDB = _context    // Ticket in database
+                             .Tickets
+                             .SingleOrDefault(t => t.Id == id);
 
-            var ticketInDB = _context.Tickets.SingleOrDefault(t => t.Id == id);
-
-            if (ticketInDB == null)
+            if (ticketInDB == null)    // No match in database
                 return NotFound();
 
-            _context.Tickets.Remove(ticketInDB);
-            _context.SaveChanges();
+            _context.Tickets.Remove(ticketInDB);    // nuke ticket
+            _context.SaveChanges();                 // save changes
 
             return Ok();
         }
-
-
-
-
-
-
     }
 }
