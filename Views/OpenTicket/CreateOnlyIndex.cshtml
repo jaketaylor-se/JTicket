@@ -1,9 +1,17 @@
-﻿@{
+﻿@*
+    View for Create Only Open Ticket displays for non-admin
+    users. These users can create a new ticket, but cannot
+    edit them after creation.
+*@
+
+
+
+@{
     ViewBag.Title = "Open Tickets";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Open Tickets</h2>    @* Page header*@
+<h2>Open Tickets</h2>    
 
 <table id="tickets" class="table table-bordered table-hover">
     <thead>

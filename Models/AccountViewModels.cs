@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿/*
+ *  View Model for the Account Views.
+ */
+
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace JTicket.Models
@@ -18,7 +23,8 @@ namespace JTicket.Models
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+        public ICollection<System.Web.Mvc.SelectListItem> Providers
+        { get; set; }
         public string ReturnUrl { get; set; }
         public bool RememberMe { get; set; }
     }
@@ -70,14 +76,17 @@ namespace JTicket.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = 
+            "The {0} must be at least {2} characters long.", 
+            MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = 
+            "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -89,14 +98,17 @@ namespace JTicket.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = 
+            "The {0} must be at least {2} characters long.", 
+            MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = 
+            "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

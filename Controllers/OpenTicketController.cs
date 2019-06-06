@@ -45,7 +45,8 @@ namespace JTicket.Views
         {
             var ViewModel = new TicketFormViewModel    // View Model for form
             {
-                severities = getSeverityList()    // Severities for display
+                Severities = getSeverityList(),    // Severities for display
+                Ticket = new Ticket()
             };
 
             return View("TicketForm", ViewModel);
@@ -67,7 +68,7 @@ namespace JTicket.Views
                 var ViewModel = new TicketFormViewModel
                 {
                     Ticket = ticket,   // The erroneous ticket
-                    severities = getSeverityList()
+                    Severities = getSeverityList()
                 };
                 return View("TicketForm", ViewModel);  // Send back form
             }
@@ -86,7 +87,7 @@ namespace JTicket.Views
                 ticketInDB.Description = ticket.Description;
                 ticketInDB.Comments = ticket.Comments;
                 ticketInDB.Severity = ticket.Severity;
-                ticketInDB.isOpen = ticket.isOpen;
+                ticketInDB.IsOpen = ticket.IsOpen;
             }
 
             _context.SaveChanges();    // Save changes wrapped in transaction
@@ -110,7 +111,7 @@ namespace JTicket.Views
             var ViewModel = new TicketFormViewModel    // Create view model
             {
                 Ticket = ticket,
-                severities = getSeverityList()
+                Severities = getSeverityList()
             };
             return View("TicketForm", ViewModel);
         }
@@ -130,7 +131,7 @@ namespace JTicket.Views
             if (ticketInDB == null)    // No matching ticket
                 return HttpNotFound();
 
-            ticketInDB.isOpen = false;    // Close ticket
+            ticketInDB.IsOpen = false;    // Close ticket
             _context.SaveChanges();       // Save changes
             
             return View("Index", "OpenTicket"); 

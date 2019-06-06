@@ -12,8 +12,8 @@
             <th>Severity</th>
             <th>Created</th>
             <th>Last Modified</th>
-            <th>Reopen</th>
-            <th>Delete</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -43,7 +43,7 @@
                                 data: "title",
                                 render: function (data, type, ticket) 
                                 {
-                                    return "<a href='/OpenTicket/Edit/" + ticket.id + "'>" + ticket.title + "</a>"
+                                    return "<a href='/Ticket/ViewTicket/" + ticket.id + "'>" + ticket.title + "</a>"
 
                                 }
                             },

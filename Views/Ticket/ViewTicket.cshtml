@@ -8,25 +8,25 @@
 
 <h3>Description</h3>
 <p>
-    @Model.Description
+    @Html.DisplayTextFor(m => m.Title)
 </p>
 
 <h3>Comments</h3>
 <p>
-    @Model.Comments
+    @Html.DisplayTextFor(m => m.Comments)
 </p>
 
 <h3>Severity</h3>
 <p>
-    @Model.Severity
+    @Html.DisplayTextFor(m => m.Severity)
 </p>
 
 <h3>Created</h3>
 <p>
-    @Model.creationDate
+    @Html.DisplayTextFor(m => m.CreationDate)
 </p>
 
 <h3>Last Modified</h3>
 <p>
-    @Model.lastModified
+    @Html.DisplayTextFor(m => m.LastModified)
 </p>

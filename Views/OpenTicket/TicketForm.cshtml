@@ -1,22 +1,32 @@
-﻿@model JTicket.Views.ViewModels.TicketFormViewModel
+﻿@*
+    View for Ticket Form for editing and creating tickets.
+    This form is used when a user creates a new ticket, or 
+    when an admin edits an existing ticket.
+*@
+
+
+
+@model JTicket.Views.ViewModels.TicketFormViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.Ticket == null)    // New Ticket
+@if (Model.Ticket.Id == 0)    // New Ticket
 {
-    Model.Ticket = new JTicket.Models.Ticket();
-
     <h2>New Ticket</h2>
-    Model.Ticket.creationDate = DateTime.Now; 
-    Model.Ticket.lastModified = Model.Ticket.creationDate; 
-    Model.Ticket.isOpen = true;
+
+    // Where should these attribute modifications go?
+    Model.Ticket.CreationDate = DateTime.Now;
+    Model.Ticket.LastModified = Model.Ticket.CreationDate;
+    Model.Ticket.IsOpen = true;
 }
 else    // Editing an existing ticket
 {
     <h2>Edit Ticket</h2>
-    Model.Ticket.lastModified = DateTime.Now;    // Update last modified
+
+    // Where should this attribute modification go?
+    Model.Ticket.LastModified = DateTime.Now;    // Update last modified
 }
 
 
@@ -30,35 +40,34 @@ else    // Editing an existing ticket
 
     </div> // HTML markup bootstrap understands
 
-<div class="form-group">
+    <div class="form-group">
 
-    @Html.LabelFor(m => m.Ticket.Severity)
-    @Html.EnumDropDownListFor(m => m.Ticket.Severity, "Select Severity", new { @class = "format-control" })
-    @Html.ValidationMessageFor(m => m.Ticket.Severity)
-</div>
+        @Html.LabelFor(m => m.Ticket.Severity)
+        @Html.EnumDropDownListFor(m => m.Ticket.Severity, "Select Severity", new { @class = "format-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Severity)
+    </div>
 
-<div class="form-group">
+    <div class="form-group">
 
-    @Html.LabelFor(m => m.Ticket.Description)
-    @Html.TextBoxFor(m => m.Ticket.Description, new { @class = "format-control" })
-    @Html.ValidationMessageFor(m => m.Ticket.Description)
-</div>
+        @Html.LabelFor(m => m.Ticket.Description)
+        @Html.TextBoxFor(m => m.Ticket.Description, new { @class = "format-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Description)
+    </div>
 
 
-<div class="form-group">
+    <div class="form-group">
 
-    @Html.LabelFor(m => m.Ticket.Comments)
-    @Html.TextBoxFor(m => m.Ticket.Comments, new { @class = "format-control" })
-    @Html.ValidationMessageFor(m => m.Ticket.Comments)
+        @Html.LabelFor(m => m.Ticket.Comments)
+        @Html.TextBoxFor(m => m.Ticket.Comments, new { @class = "format-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Comments)
 
-</div>
+    </div>
 
     @Html.HiddenFor(m => m.Ticket.Id)
-    @Html.HiddenFor(m => m.Ticket.creationDate)
-    @Html.HiddenFor(m => m.Ticket.lastModified)
-    @Html.HiddenFor(m => m.Ticket.isOpen)
+    @Html.HiddenFor(m => m.Ticket.CreationDate)
+    @Html.HiddenFor(m => m.Ticket.LastModified)
+    @Html.HiddenFor(m => m.Ticket.IsOpen)
     @Html.AntiForgeryToken()
-
 
 
     // To submit the form
@@ -67,8 +76,7 @@ else    // Editing an existing ticket
 
 @section scripts
 {
-    
-    @Scripts.Render("~/bundles/jqueryval")    
-    
-}
 
+    @Scripts.Render("~/bundles/jqueryval")  
+
+}

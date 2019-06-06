@@ -8,7 +8,7 @@ namespace JTicket.Views.ViewModels
 {
     public class TicketFormViewModel
     {
-        public IEnumerable<Severity> severities { get; set; }
+        public IEnumerable<Severity> Severities { get; set; }
         public Ticket Ticket { get; set; }
     }
 }

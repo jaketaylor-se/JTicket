@@ -47,13 +47,13 @@ namespace JTicket.Controllers.Api
 
             else if (filter.Equals("open"))    // Request is for open tickets
                 return Ok(_context.Tickets
-                          .Where(t => t.isOpen == true)
+                          .Where(t => t.IsOpen == true)
                           .ToList()
                           .Select(Mapper.Map<Ticket, TicketDto>));
 
             else if (filter.Equals("resolved"))    // Request resolved
                 return Ok(_context.Tickets
-                          .Where(t => t.isOpen == false)
+                          .Where(t => t.IsOpen == false)
                           .ToList()
                           .Select(Mapper.Map<Ticket, TicketDto>));
             else
@@ -87,9 +87,9 @@ namespace JTicket.Controllers.Api
             var ticket = Mapper.Map<TicketDto, Ticket>(ticketDto); 
 
             // Update internal state data
-            ticket.creationDate = DateTime.Now;
-            ticket.lastModified = ticket.creationDate;
-            ticket.isOpen = true;
+            ticket.CreationDate = DateTime.Now;
+            ticket.LastModified = ticket.CreationDate;
+            ticket.IsOpen = true;
 
             // Add the new object to context and save changes
             _context.Tickets.Add(ticket);
@@ -119,12 +119,12 @@ namespace JTicket.Controllers.Api
 
             // No return type now
             Mapper.Map(ticketDto, ticketInDB);    // Compiler infers types
-            ticketInDB.lastModified = DateTime.Now;  // Update modified stamp
+            ticketInDB.LastModified = DateTime.Now;  // Update modified stamp
 
             if (resolve & !reopen)    // Resolve ticket
-                ticketInDB.isOpen = false;
+                ticketInDB.IsOpen = false;
             else if (!resolve & reopen)    // Reopen ticket
-                ticketInDB.isOpen = true;
+                ticketInDB.IsOpen = true;
             else if ((!resolve & !reopen) || (resolve & reopen))
                 return BadRequest();
 

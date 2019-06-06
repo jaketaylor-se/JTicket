@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201905221837299_SeedUsers.Designer.cs">
       <DependentUpon>201905221837299_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906061918068_SeverityNullable.cs" />
+    <Compile Include="Migrations\201906061918068_SeverityNullable.Designer.cs">
+      <DependentUpon>201906061918068_SeverityNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -605,6 +609,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221837299_SeedUsers.resx">
       <DependentUpon>201905221837299_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061918068_SeverityNullable.resx">
+      <DependentUpon>201906061918068_SeverityNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

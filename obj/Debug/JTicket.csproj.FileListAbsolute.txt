@@ -121,3 +121,4 @@ C:\Users\jaket\source\repos\JTicket\bin\Glimpse.AspNet.dll
 C:\Users\jaket\source\repos\JTicket\bin\Glimpse.Core.dll
 C:\Users\jaket\source\repos\JTicket\bin\Glimpse.EF6.dll
 C:\Users\jaket\source\repos\JTicket\bin\Glimpse.Mvc5.dll
+C:\Users\jaket\source\repos\JTicket\obj\Debug\JTicket.Migrations.SeverityNullable.resources

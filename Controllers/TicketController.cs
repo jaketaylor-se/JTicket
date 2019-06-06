@@ -11,6 +11,11 @@ using JTicket.Models;
 
 namespace JTicket.Controllers
 {
+    /// <summary>
+    /// Class 
+    /// <c>TicketController</c> 
+    /// Base class for Controllers that handle ticket-related requests.
+    /// </summary>
     public class TicketController : Controller
     {
 

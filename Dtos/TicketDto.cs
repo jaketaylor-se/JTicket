@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿/*
+ *  Data Transfer Class for Tickets
+ */
+
+
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 using JTicket.Models;
 
 namespace JTicket.Dtos
 {
+    /// <summary>
+    /// Class 
+    /// <c>TicketDto</c> 
+    /// Data Transfer Class for Ticket Domain Model objects.
+    /// </summary>
     public class TicketDto
     {
         [StringLength(500)]
