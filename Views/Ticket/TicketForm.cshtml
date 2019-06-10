@@ -5,32 +5,27 @@
 *@
 
 
-
 @model JTicket.Views.ViewModels.TicketFormViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{string action; } 
 @if (Model.Ticket.Id == 0)    // New Ticket
 {
     <h2>New Ticket</h2>
+    action = "SaveNew"; 
 
-    // Where should these attribute modifications go?
-    Model.Ticket.CreationDate = DateTime.Now;
-    Model.Ticket.LastModified = Model.Ticket.CreationDate;
-    Model.Ticket.IsOpen = true;
 }
 else    // Editing an existing ticket
 {
-    <h2>Edit Ticket</h2>
-
-    // Where should this attribute modification go?
-    Model.Ticket.LastModified = DateTime.Now;    // Update last modified
+    <h2> Edit Ticket </h2 >
+    action = "SaveChanges";     // Get rid of literal here
 }
 
 
-@using (Html.BeginForm("Save", "OpenTicket"))
+@using (Html.BeginForm(action, "Ticket"))
 {
     <div class="form-group">
 

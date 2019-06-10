@@ -27,7 +27,7 @@
 </table>
 
 <p>
-    @Html.ActionLink("New Ticket", "New", "OpenTicket", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Ticket", "New", "Ticket", null, new { @class = "btn btn-primary" })
 </p>
 
 @section scripts
@@ -50,7 +50,7 @@
                             {
                                 data: "title",
                                 render: function (data, type, ticket) {
-                                    return "<a href='/OpenTicket/Edit/" + ticket.id + "'>" + ticket.title + "</a>"
+                                    return "<a href='/Ticket/Edit/" + ticket.id + "'>" + ticket.title + "</a>"
 
                                 }
                             },

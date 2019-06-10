@@ -70,5 +70,16 @@ namespace JTicket.Models
         [Required]
         [StringLength(255)]
         public string Title { get; set; }
+
+        public static Ticket CreateEmptyOpenTicket(DateTime CreationDateTime,
+                                                   DateTime LastModifiedDateTime)
+        {
+            return new Ticket()
+            {
+                CreationDate = CreationDateTime,
+                LastModified = LastModifiedDateTime,
+                IsOpen = true
+            };
+        }
     }
 }

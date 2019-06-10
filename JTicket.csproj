@@ -203,7 +203,6 @@
     <Compile Include="Controllers\Api\TicketsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ResolvedTicketController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Dtos\TicketDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -226,21 +225,14 @@
     <Compile Include="Migrations\201905221837299_SeedUsers.Designer.cs">
       <DependentUpon>201905221837299_SeedUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906061918068_SeverityNullable.cs" />
-    <Compile Include="Migrations\201906061918068_SeverityNullable.Designer.cs">
-      <DependentUpon>201906061918068_SeverityNullable.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\OpenTicket.cs" />
-    <Compile Include="Models\ResolvedTicket.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Controllers\OpenTicketController.cs" />
     <Compile Include="Views\ViewModels\NewTicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -574,10 +566,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\OpenTicket\Index.cshtml" />
-    <Content Include="Views\ResolvedTicket\Index.cshtml" />
     <Content Include="Views\Shared\Details.cshtml" />
-    <Content Include="Views\OpenTicket\TicketForm.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -587,9 +576,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\OpenTicket\CreateOnlyIndex.cshtml" />
-    <Content Include="Views\ResolvedTicket\ReadOnlyIndex.cshtml" />
     <Content Include="Views\Ticket\ViewTicket.cshtml" />
+    <Content Include="Views\Ticket\CreateOnlyViewOpenTickets.cshtml" />
+    <Content Include="Views\Ticket\FullPermissionsViewOpenTickets.cshtml" />
+    <Content Include="Views\Ticket\TicketForm.cshtml" />
+    <Content Include="Views\Ticket\FullPermissionsViewResolvedTickets.cshtml" />
+    <Content Include="Views\Ticket\ReadOnlyViewResolvedTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -609,9 +601,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221837299_SeedUsers.resx">
       <DependentUpon>201905221837299_SeedUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906061918068_SeverityNullable.resx">
-      <DependentUpon>201906061918068_SeverityNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

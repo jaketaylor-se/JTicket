@@ -25,6 +25,28 @@ namespace JTicket
 
             routes.MapRoute    // Default route
             (
+                name: "ViewResolvedTickets",
+                url: "ResolvedTickets/",
+                defaults: new
+                {
+                    controller = "Ticket",          // Default to Home Controller
+                    action = "ViewResolvedTickets",
+                }
+            );
+
+            routes.MapRoute    // View open tickets
+            (
+                name: "ViewOpenTickets",
+                url: "OpenTickets/",
+                defaults: new
+                {
+                    controller = "Ticket",          // Default to Home Controller
+                    action = "ViewOpenTickets",
+                }
+            );
+
+            routes.MapRoute    // Default route
+            (
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new
