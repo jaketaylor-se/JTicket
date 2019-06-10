@@ -10,31 +10,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
+using JTicket.Models;
+
 namespace JTicket.Models
 {
-    /// <summary>
-    /// Enum 
-    /// <c>Severity</c> 
-    /// Enumeration for ticket severities. In future versions, this 
-    /// enumeration will replaced by a static class.
-    /// </summary>
-    public enum Severity
-    {
-        [Display(Name ="Very Low")]
-        VeryLow = 1,
-
-        [Display(Name = "Low")]
-        Low = 2,
-
-        [Display(Name = "Medium")]
-        Medium = 3,
-
-        [Display(Name = "High")]
-        High = 4,
-
-        [Display(Name = "Very High")]
-        VeryHigh = 5
-    }
 
     /// <summary>
     /// Class 
