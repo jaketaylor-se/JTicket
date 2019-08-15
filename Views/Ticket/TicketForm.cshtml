@@ -1,0 +1,77 @@
+﻿@*
+    View for Ticket Form for editing and creating tickets.
+    This form is used when a user creates a new ticket, or
+    when an admin edits an existing ticket.
+*@
+
+
+@model JTicket.Views.ViewModels.TicketFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string action; }
+@if (Model.Ticket.Id == 0)    // New Ticket
+{
+    <h2>New Ticket</h2>
+    action = "SaveNewTicket";
+
+}
+else    // Editing an existing ticket
+{
+    <h2>Edit Ticket</h2>
+    action = "SaveExistingTicket";
+}
+
+
+@using (Html.BeginForm(action, "Ticket"))
+{
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.Ticket.Title)
+        @Html.TextBoxFor(m => m.Ticket.Title, new { @class = "format-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Title)
+
+    </div> // HTML markup bootstrap understands
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.Ticket.Severity)
+        @Html.EnumDropDownListFor(m => m.Ticket.Severity, "Select Severity", new { @class = "format-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Severity)
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.Ticket.Description)
+        @Html.TextBoxFor(m => m.Ticket.Description, new { @class = "format-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Description)
+    </div>
+
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.Ticket.Comments)
+        @Html.TextBoxFor(m => m.Ticket.Comments, new { @class = "format-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Comments)
+
+    </div>
+
+    @Html.HiddenFor(m => m.Ticket.Id)
+    @Html.HiddenFor(m => m.Ticket.CreationDate)
+    @Html.HiddenFor(m => m.Ticket.LastModified)
+    @Html.HiddenFor(m => m.Ticket.IsOpen)
+    @Html.AntiForgeryToken()
+
+
+    // To submit the form
+    <button type="submit" class="btn" class="btn-primary">Save</button>
+}
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

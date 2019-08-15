@@ -1,0 +1,33 @@
+﻿
+.banner {
+    color: white;
+    background-color: #3C91E6;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    margin-bottom: 30px;
+}
+.view-ticket-container
+{
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.view-ticket-header 
+{
+    background-color: #3F4045;
+    color: #F1F2EB;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius:10px;
+
+}
+
+.view-ticket-attribute {
+    text-align: center;
+    flex-direction: row;
+}

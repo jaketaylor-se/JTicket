@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Resolved Tickets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Resolved Tickets</h2>    @* Page header*@
+
+<table id="tickets" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ticket</th>
+            <th>Severity</th>
+            <th>Created</th>
+            <th>Last Modified</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function ()
+        {
+            $.fn.dataTable.enum(['Very High', 'High', 'Medium', 'Low', 'Very Low']);
+            var table = $("#tickets").DataTable(
+                {
+                    "bInfo": false,
+
+                    ajax:
+                    {
+                        url: "/api/tickets?filter=resolved",
+                        dataSrc: ""
+                    },
+
+                    columns:
+                        [
+                            {
+                                data: "title",
+                                render: function (data, type, ticket)
+                                {
+                                    return "<a href='/Ticket/ViewTicket/" + ticket.id + "'>" + ticket.title + "</a>"
+                                }
+                            },
+
+                            {
+                                data: "severity",
+                                render: function (data)
+                                {
+                                    switch (data)
+                                    {
+                                        case (1):
+                                            return "Very Low";
+                                        case (2):
+                                            return "Low";
+                                        case (3):
+                                            return "Medium";
+                                        case (4):
+                                            return "High";
+                                        case (5):
+                                            return "Very High"
+                                    }
+                                }
+                            },
+                            {
+                                data: "creationDate",
+                                render: function (data, type, row)
+                                {
+                                    if (type === "sort" || type === "type")
+                                    {
+                                        return data;
+                                    }
+
+                                    return moment(data).format("MM-DD-YYYY HH:mm:ss");
+                                }
+                            },
+
+                            {
+                                data: "lastModified",
+                                render: function (data, type, row)
+                                {
+                                    if (type === "sort" || type === "type")
+                                    {
+                                        return data;
+                                    }
+
+                                    return moment(data).format("MM-DD-YYYY HH:mm:ss");
+                                }
+                            },
+                        ]
+                });
+        });
+    </script>
+}
