@@ -3,30 +3,37 @@
     ViewBag.Title = "ViewTicket";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <link href="~/Content/ViewTicket.css" rel="stylesheet" />
+</head>
 
-<h2>@Model.Title</h2>
 
-<h3>Description</h3>
-<p>
-    @Html.DisplayTextFor(m => m.Title)
-</p>
+<h2 class="banner">@Model.Title</h2>
 
-<h3>Comments</h3>
-<p>
-    @Html.DisplayTextFor(m => m.Comments)
-</p>
+<div class="view-ticket-container">
 
-<h3>Severity</h3>
-<p>
-    @Html.DisplayTextFor(m => m.Severity)
-</p>
+    <div class="view-ticket-attribute">
+        <h3 class="view-ticket-header">Status</h3>
+        <div>@Model.State</div>
+    </div>
 
-<h3>Created</h3>
-<p>
-    @Html.DisplayTextFor(m => m.CreationDate)
-</p>
+    <div class="view-ticket-attribute">
+        <h3 class="view-ticket-header">Severity</h3>    
+        <div>@Model.Severity</div>
+    </div>
 
-<h3>Last Modified</h3>
-<p>
-    @Html.DisplayTextFor(m => m.LastModified)
-</p>
+
+    <div class="view-ticket-attribute">
+        <h3 class="view-ticket-header">Created</h3>
+        <div>@Model.CreationDate</div>
+    </div>
+
+
+    <div class="view-ticket-attribute">
+        <h3 class="view-ticket-header">Last Modified</h3>
+        <div>@Model.LastModified</div>
+    </div>
+
+
+
+</div>

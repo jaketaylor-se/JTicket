@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using JTicket.Models;
+using JTicket.Models.Enumerations;
 
 namespace JTicket.Dtos
 {
@@ -35,7 +36,7 @@ namespace JTicket.Dtos
 
         [Required]
         [Range(1, 5)]
-        public Severity Severity { get; set; }
+        public TicketSeverity Severity { get; set; }
 
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -44,6 +45,10 @@ namespace JTicket.Dtos
         [Required]
         [StringLength(255)]
         public string Title { get; set; }
+
+        [Required]
+        [Range(0, 4)]
+        public TicketState State { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/kanban.css?4" rel="stylesheet" asp-append-version="true" />
 </head>
 <body>
     @Html.Partial("_NavBar")
@@ -18,7 +18,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/lib")    
+    @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
 </body>
 </html>

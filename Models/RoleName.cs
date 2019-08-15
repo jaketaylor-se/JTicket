@@ -14,6 +14,6 @@ namespace JTicket.Models
     public static class RoleName
     {
         // admin permissions
-        public const string CanManageTickets = "CanManageResolvedTickets";
+        public const string HasFullPermissions = "CanManageResolvedTickets";
     }
 }

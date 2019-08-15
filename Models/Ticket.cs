@@ -10,38 +10,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
+using JTicket.Models.Enumerations;
+
 namespace JTicket.Models
 {
-    /// <summary>
-    /// Enum 
-    /// <c>Severity</c> 
-    /// Enumeration for ticket severities. In future versions, this 
-    /// enumeration will replaced by a static class.
-    /// </summary>
-    public enum Severity
-    {
-        [Display(Name ="Very Low")]
-        VeryLow = 1,
-
-        [Display(Name = "Low")]
-        Low = 2,
-
-        [Display(Name = "Medium")]
-        Medium = 3,
-
-        [Display(Name = "High")]
-        High = 4,
-
-        [Display(Name = "Very High")]
-        VeryHigh = 5
-    }
-
-    /// <summary>
-    /// Class 
-    /// <c>Ticket</c> 
-    /// Base Ticket class. In future versions, this will be the only domain
-    /// model for tickets.
-    /// </summary>
     public class Ticket
     {
         [StringLength(500)]
@@ -55,7 +27,7 @@ namespace JTicket.Models
 
         [Required]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Severity? Severity { get; set; } 
+        public TicketSeverity? Severity { get; set; } 
 
         [Required]
         public DateTime CreationDate { get; set; }  // Ticket created time
@@ -70,5 +42,9 @@ namespace JTicket.Models
         [Required]
         [StringLength(255)]
         public string Title { get; set; }
+
+        [Required]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public TicketState State { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web.Http;
 
 using JTicket.Models;
+using JTicket.Models.Enumerations;
 using JTicket.Dtos;
 using AutoMapper;
 
@@ -33,34 +34,39 @@ namespace JTicket.Controllers.Api
             _context = new ApplicationDbContext();    // Initialize context
         }
 
-        // GET /api/tickets
+        [HttpGet, Route("api/tickets/{filter=all}")]
         public IHttpActionResult GetTickets(string filter="all")
         {
             // Pass Mapper as Delegate
             // Select Method: Projects each element of a sequence into a new 
             // form by incorporating the element's index.
 
+
+
             if (filter.Equals("all"))    // Request is for all tickets
                 return Ok(_context.Tickets
                           .ToList()
                           .Select(Mapper.Map<Ticket, TicketDto>));
 
-            else if (filter.Equals("open"))    // Request is for open tickets
+            else if (filter.Equals("open"))
                 return Ok(_context.Tickets
-                          .Where(t => t.IsOpen == true)
+                          .Where(t => t.State != TicketState.resolved)
                           .ToList()
                           .Select(Mapper.Map<Ticket, TicketDto>));
 
-            else if (filter.Equals("resolved"))    // Request resolved
+            else if (Enum.IsDefined(typeof(TicketState), filter))
+            {
+                TicketState theState = (TicketState)Enum.Parse(typeof(TicketState), filter);
                 return Ok(_context.Tickets
-                          .Where(t => t.IsOpen == false)
+                          .Where(t => t.State == theState)
                           .ToList()
                           .Select(Mapper.Map<Ticket, TicketDto>));
+            }
             else
                 return BadRequest();
         }
 
-        // GET /api/tickets/1
+        [HttpGet, Route("api/tickets/{id}")]
         public IHttpActionResult GetTicket(int id)
         {
 
@@ -74,9 +80,8 @@ namespace JTicket.Controllers.Api
         }
 
         // POST /api/tickets/1
-        [HttpPost]
-        [Authorize(Roles = RoleName.CanManageTickets)]
-        public IHttpActionResult CreateTicket(TicketDto ticketDto) 
+        [HttpPost, Route("api/tickets")]
+        public IHttpActionResult CreateTicket([FromBody] TicketDto ticketDto) 
         {
             /* The return type is IHttpActionResult to give more control over
               the status code sent back to the client. */
@@ -90,6 +95,7 @@ namespace JTicket.Controllers.Api
             ticket.CreationDate = DateTime.Now;
             ticket.LastModified = ticket.CreationDate;
             ticket.IsOpen = true;
+            ticket.State = TicketState.open;
 
             // Add the new object to context and save changes
             _context.Tickets.Add(ticket);
@@ -102,12 +108,9 @@ namespace JTicket.Controllers.Api
                                    ticketDto);    
         }
 
-        // PUT /api/tickets/1
-        [HttpPut]
-        [Authorize(Roles = RoleName.CanManageTickets)]
-        public IHttpActionResult UpdateTicket(int id, TicketDto ticketDto, 
-                                              bool resolve=false, 
-                                              bool reopen=false)
+        [HttpPut, Route("api/tickets/{id}")]
+        public IHttpActionResult PutTicket(int id, int newState,
+                                             [FromBody] TicketDto ticketDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -121,12 +124,18 @@ namespace JTicket.Controllers.Api
             Mapper.Map(ticketDto, ticketInDB);    // Compiler infers types
             ticketInDB.LastModified = DateTime.Now;  // Update modified stamp
 
-            if (resolve & !reopen)    // Resolve ticket
-                ticketInDB.IsOpen = false;
-            else if (!resolve & reopen)    // Reopen ticket
-                ticketInDB.IsOpen = true;
-            else if ((!resolve & !reopen) || (resolve & reopen))
+
+            if (Enum.IsDefined(typeof(TicketState), newState))
+            {
+                ticketInDB.State = (TicketState)newState;
+            }
+            else
                 return BadRequest();
+
+            if (ticketInDB.State != TicketState.resolved)
+                ticketInDB.IsOpen = true;
+            else
+                ticketInDB.IsOpen = false;
 
             _context.SaveChanges();    // Persist changes
 
@@ -135,7 +144,7 @@ namespace JTicket.Controllers.Api
 
         // DELETE /api/ticket/1
         [HttpDelete]
-        [Authorize(Roles = RoleName.CanManageTickets)]
+        [Authorize(Roles = RoleName.HasFullPermissions)]
         public IHttpActionResult DeleteTicket(int id)
         {
             var ticketInDB = _context    // Ticket in database

@@ -21,6 +21,7 @@ namespace JTicket
         /// </summary>
         public static void Register(HttpConfiguration config)
         {
+
             // Formatting settings. The goal is to make the JSON 
             // returned from the Web API more digestable for JavaScript.
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
