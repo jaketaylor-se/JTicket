@@ -45,6 +45,31 @@ class TicketKanbanBoard extends React.Component {
     }
 
 
+    createTicketJsx(ticket, ticketStateString) {
+
+        return <a href={"http://localhost:53229/Ticket/Edit/" + ticket.id}>
+            <div key={ticket.id}
+                className={"draggable flex-" + ticketStateString + "-ticket"}
+                        draggable
+                        onDragStart={(e) => this.handleDragStart(e, ticket.id)}>
+
+                        {ticket.title}
+                    </div>
+               </a>
+    }
+
+    createTicketColumnJsx(arrayOfTickets, columnTitle, dropEventStatusCode) {
+
+        return <div className="flex-column"
+                    onDragOver={(e) => this.handleDragOver(e)}
+                    onDrop={(e) => this.handleDropEvent(e, dropEventStatusCode)}>
+
+                    <h2 className="flex-heading">{columnTitle}</h2>
+                        {arrayOfTickets}
+               </div>
+    }
+
+
     render() {
 
         let tickets =
@@ -56,95 +81,26 @@ class TicketKanbanBoard extends React.Component {
             testing: this.state.tickets.filter(ticket => ticket.state === 3)
         }
 
-        let open_components = tickets.open.map(ticket =>
-            <div key={ticket.id}
-                className="draggable flex-open-ticket"
-                draggable
-                onDragStart={(e) => this.handleDragStart(e, ticket.id)}>
-
-                {ticket.title}
-            </div>)
-
-        let resolved_components = tickets.resolved.map(ticket =>
-            <div key={ticket.id}
-                className="draggable flex-resolved-ticket "
-                draggable
-                onDragStart={(e) => this.handleDragStart(e, ticket.id)}>
-
-                {ticket.title}
-            </div>)
-
-        let analysis_components = tickets.analysis.map(ticket =>
-            <div key={ticket.id}
-                className="draggable flex-analysis-ticket"
-                draggable
-                onDragStart={(e) => this.handleDragStart(e, ticket.id)}>
-                {ticket.title}
-            </div>)
-
-        let debugging_components = tickets.debugging.map(ticket =>
-            <div key={ticket.id}
-                className="draggable flex-debugging-ticket "
-                draggable
-                onDragStart={(e) => this.handleDragStart(e, ticket.id)}>
-                {ticket.title}
-            </div>)
-
-        let testing_components = tickets.testing.map(ticket =>
-            <div key={ticket.id}
-                className="draggable flex-testing-ticket"
-                draggable
-                onDragStart={(e) => this.handleDragStart(e, ticket.id)}>
-                {ticket.title}
-            </div>)
+        let open_components = tickets.open.map(
+            ticket => this.createTicketJsx(ticket, "open"))
+        let resolved_components = tickets.resolved.map(
+            ticket => this.createTicketJsx(ticket, "resolved"))
+        let analysis_components = tickets.analysis.map(
+            ticket => this.createTicketJsx(ticket, "analysis"))
+        let debugging_components = tickets.debugging.map(
+            ticket => this.createTicketJsx(ticket, "debugging"))
+        let testing_components = tickets.testing.map(
+            ticket => this.createTicketJsx(ticket, "testing"))
 
         return (
             <div className="flex-container">
 
-                <div className="flex-column"
-                    onDragOver={(e) => this.handleDragOver(e)}
-                    onDrop={(e) => this.handleDropEvent(e, 0)}>
+                {this.createTicketColumnJsx(open_components, "Open", 0)}
+                {this.createTicketColumnJsx(analysis_components, "Analysis", 1)}
+                {this.createTicketColumnJsx(debugging_components, "Debugging", 2)}
+                {this.createTicketColumnJsx(testing_components, "Testing", 3)}
+                {this.createTicketColumnJsx(resolved_components, "Resolved", 4)}
 
-                    <h2 className="flex-heading">Open</h2>
-
-                    {open_components}
-
-                </div>
-
-                <div className="flex-column"
-                    onDragOver={(e) => this.handleDragOver(e)}
-                    onDrop={(e) => this.handleDropEvent(e, 1)}>
-
-                    <h2 className="flex-heading">Analysis</h2>
-                    {analysis_components}
-
-                </div>
-
-                <div className="flex-column"
-                    onDragOver={(e) => this.handleDragOver(e)}
-                    onDrop={(e) => this.handleDropEvent(e, 2)}>
-
-                    <h2 className="flex-heading">Debugging</h2>
-                    {debugging_components}
-
-                </div>
-
-                <div className="flex-column"
-                    onDragOver={(e) => this.handleDragOver(e)}
-                    onDrop={(e) => this.handleDropEvent(e, 3)}>
-
-                    <h2 className="flex-heading">Testing</h2>
-                    {testing_components}
-                </div>
-
-
-                <div className="flex-column"
-                    onDragOver={(e) => this.handleDragOver(e)}
-                    onDrop={(e) => this.handleDropEvent(e, 4)}>
-
-                    <h2 className="flex-heading">Resolved</h2>
-                    {resolved_components}
-                </div>
             </div>
         );
     }

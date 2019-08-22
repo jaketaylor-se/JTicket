@@ -1,7 +1,7 @@
 ﻿module.exports =
-{
+    {
         context: __dirname,
-        entry: "./app.js",
+        entry: "./kanbanBoardApp.tsx",
         output:
         {
             path: __dirname + "/dist",
@@ -11,7 +11,7 @@
         module:
         {
             rules:
-            [
+                [
                     {
                         test: /\.js$/,
                         exclude: /(node_modules)/,
@@ -24,9 +24,19 @@
                                 plugins: ["@babel/plugin-proposal-class-properties"]
                             }
                         }
+                    },
 
+                    {
+                        test: /\.tsx?$/,
+                        exclude: /(node_modules)/,
+                        use: "ts-loader"
                     }
-            ]
 
-        }
-}
+                ]
+
+    }
+
+    };
+
+
+

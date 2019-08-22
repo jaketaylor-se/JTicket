@@ -9,70 +9,102 @@
 
 .flex-column {
     flex: 1;
-    background: linear-gradient(360deg, #1C1C1C 10%, #494949 360%);
-    text-align: center;
-    margin: 20px;
-    padding-bottom: 20px;
-    height: 100%;
-    border-radius: 10px;
+    background-color: #303030; 
+
+    height: auto;
+    margin: 1px;
     justify-content: center;
 }
 
 .flex-heading {
-    background: linear-gradient(360deg,#949494 10%,#efefef 360%);
-    border-radius: 25px;
-    color: #F0FFFF;
-    padding: 10px;
-    margin-bottom: 60px;
-    margin-left: 10px;
-    margin-right: 10px;
+    background: #303030;
+    top: 0;
+    left: 0;
+    color: lightgray;
+    font-size: 15px;
+    padding-left: 10px;
+    font-family: Arial;
+    position: relative;
+    padding-bottom: 5px;
+    border-bottom-color: #303030;
+    border-bottom: dashed;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.column-header-title {
+    justify-content: space-between;
+    padding-right: 25px;
+}
+
+
+.column-header-ticket-count {
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.column-header-ticket-count-overloaded {
+    color: red;
+    justify-content: space-between;
+    padding-right: 10px;
 }
 
 
 .flex-open-ticket {
-    background-color: #FF4136;
+    background-color: #505050;
     color: #F0FFFF;
     padding: 20px;
-    border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    margin:20px;
+    margin: 5px;
+    border-left: solid;
+    border-left-color: #FF4136;
+    border-left-width: 3px;
 }
 
 
 .flex-analysis-ticket {
-    background-color: #FF851B;
+    background-color: #505050;
     color: #F0FFFF;
     padding: 20px;
-    border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 20px;
+    margin: 5px;
+    border-left: solid;
+    border-left-color: #FF851B;
+    border-left-width: 3px;
 }
 
 
 .flex-debugging-ticket {
-    background-color: #FFDC00;
+    background-color: #505050;
     color: #F0FFFF;
     padding: 20px;
-    border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 20px;
+    margin: 5px;
+    border-left: solid;
+    border-left-color: #FFDC00;
+    border-left-width: 3px;
 }
 
 
 .flex-testing-ticket {
-    background-color: #0074D9;
+    background-color: #505050;
     color: #F0FFFF;
     padding: 20px;
-    border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 20px;
+    margin: 5px;
+    border-left: solid;
+    border-left-color: #7FDBFF;
+    border-left-width: 3px;
 }
 
 .flex-resolved-ticket {
-    background-color: #2ECC40;
+    background-color: #505050;
     color: #F0FFFF;
     padding: 20px;
-    border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 20px;
+    margin: 5px;
+    border-left: solid;
+    border-left-color: green;
+    border-left-width: 3px;
 }
