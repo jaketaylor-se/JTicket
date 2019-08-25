@@ -50,5 +50,10 @@ namespace JTicket.Dtos
         [Range(0, 4)]
         public TicketState State { get; set; }
 
+
+        [Required]
+        [Range(0, 1)]
+        public TicketType Type { get; set; }
+
     }
 }

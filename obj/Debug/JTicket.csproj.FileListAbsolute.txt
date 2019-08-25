@@ -277,3 +277,4 @@ C:\Users\jaket\Documents\repos\JTicket\bin\System.Web.Optimization.React.pdb
 C:\Users\jaket\Documents\repos\JTicket\bin\System.Web.Optimization.React.xml
 C:\Users\jaket\Documents\repos\JTicket\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 C:\Users\jaket\Documents\repos\JTicket\bin\ru-ru\JavaScriptEngineSwitcher.V8.resources.dll
+C:\Users\jaket\Documents\repos\JTicket\obj\Debug\JTicket.Migrations.AddedTicketType.resources

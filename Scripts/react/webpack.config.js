@@ -1,7 +1,10 @@
-﻿module.exports =
+﻿
+var path = require('path');
+
+module.exports =
     {
         context: __dirname,
-        entry: "./kanbanBoardApp.tsx",
+        entry: "./KanbanBoardTickets.tsx",
         output:
         {
             path: __dirname + "/dist",
@@ -32,8 +35,21 @@
                         use: "ts-loader"
                     }
 
-                ]
+                ],
 
+    },
+
+    resolve:
+    {
+        extensions: ['.js', '.jsx', '.tsx'],
+        modules: [
+            'node_modules',
+            path.resolve(__dirname, 'components'),
+            path.resolve(__dirname, 'contracts'),
+            path.resolve(__dirname, 'enumerations'),
+            path.resolve(__dirname, 'exceptions'),
+            path.resolve(__dirname, 'implementations')
+        ]
     }
 
     };

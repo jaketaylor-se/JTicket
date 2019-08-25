@@ -9,7 +9,8 @@ VALUES ('This is a description for test ticket 1',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 1',
-		0);
+		0,
+		1);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 2',
@@ -19,7 +20,8 @@ VALUES ('This is a description for test ticket 2',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 2',
-		4);
+		4,
+		0);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 3',
@@ -29,7 +31,8 @@ VALUES ('This is a description for test ticket 3',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 3',
-		2);
+		2,
+		1);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 4',
@@ -39,7 +42,8 @@ VALUES ('This is a description for test ticket 4',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 4',
-		3);
+		3,
+		0);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 5',
@@ -49,7 +53,8 @@ VALUES ('This is a description for test ticket 5',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 5',
-		4);
+		4,
+		1);
 
 
 INSERT INTO Tickets 
@@ -60,7 +65,8 @@ VALUES ('This is a description for test ticket 6',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 6',
-		4);
+		4,
+		0);
 
 
 INSERT INTO Tickets 
@@ -71,7 +77,8 @@ VALUES ('This is a description for test ticket 7',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 7',
-		2);
+		2,
+		1);
 
 
 INSERT INTO Tickets 
@@ -82,7 +89,8 @@ VALUES ('This is a description for test ticket 8',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 8',
-		2);
+		2,
+		0);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 9',
@@ -92,7 +100,8 @@ VALUES ('This is a description for test ticket 9',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 9',
-		3);
+		3,
+		1);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 10',
@@ -102,7 +111,8 @@ VALUES ('This is a description for test ticket 10',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 10',
-		4);
+		4,
+		0);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 11',
@@ -112,7 +122,8 @@ VALUES ('This is a description for test ticket 11',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 11',
-		4);
+		4,
+		1);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 12',
@@ -122,7 +133,8 @@ VALUES ('This is a description for test ticket 12',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 12',
-		1);
+		1,
+		0);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 13',
@@ -131,7 +143,8 @@ VALUES ('This is a description for test ticket 13',
 		4,
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
-		'Test Ticket 1',
+		'Test Ticket 13',
+		1,
 		1);
 
 INSERT INTO Tickets 
@@ -142,7 +155,8 @@ VALUES ('This is a description for test ticket 14',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 14',
-		1);
+		1,
+		0);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 15',
@@ -152,7 +166,8 @@ VALUES ('This is a description for test ticket 15',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 15',
-		2);
+		2,
+		1);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 16',
@@ -162,7 +177,8 @@ VALUES ('This is a description for test ticket 16',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 16',
-		2);
+		2,
+		0);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 17',
@@ -172,7 +188,8 @@ VALUES ('This is a description for test ticket 17',
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		'Test Ticket 17',
-		3);
+		3,
+		1);
 
 INSERT INTO Tickets 
 VALUES ('This is a description for test ticket 18',
@@ -181,5 +198,6 @@ VALUES ('This is a description for test ticket 18',
 		1,
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
-		'Test Ticket 1',
-		3);
+		'Test Ticket 18',
+		3,
+		0);

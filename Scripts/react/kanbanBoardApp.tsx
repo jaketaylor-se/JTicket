@@ -3,16 +3,34 @@ import * as ReactDOM from 'react-dom';
 
 class InvalidTicketStateException extends Error {}
 class TicketNotFoundException extends Error { }
+class InvalidTicketSeverityException extends Error { }
 class DuplicateTicketEntriesException extends Error { }
 
 
-enum TicketStatus {
+enum TicketType
+{
+    bug = 0,
+    story = 1
+}
+
+enum TicketStatus
+{
 
     open = 0,
     analysis = 1,
     debugging = 2,
     testing = 3,
     resolved = 4
+}
+
+
+enum TicketSeverity {
+
+    veryLow = 1,
+    low = 2,
+    medium = 3,
+    high = 4,
+    veryHigh = 5
 }
 
 
@@ -83,6 +101,8 @@ interface ITicket {
     CreationDate: Date;
     LastModified: Date;
     Title: string;
+    Type: TicketType;
+    Severity: TicketSeverity;
 }
 
 class Ticket implements ITicket {
@@ -92,6 +112,8 @@ class Ticket implements ITicket {
     CreationDate: Date;
     LastModified: Date;
     Title: string;
+    Type: TicketType;
+    Severity: TicketSeverity;
 
     static parseJson(Json: Array<any>): Array<ITicket>{
 
@@ -106,6 +128,8 @@ class Ticket implements ITicket {
             ticket.Title = Json[i].title;
             ticket.State = Json[i].state;
             ticket.Id = Json[i].id;
+            ticket.Type = Json[i].type;
+            ticket.Severity = Json[i].severity;
 
             tickets.push(ticket);
         }
@@ -159,12 +183,7 @@ class ApiTicketRepository implements ITicketRepository
 
     set(ticket: ITicket): Promise<void> {
 
-        let response: Object = {
 
-            state: TicketStateMapper.TicketStateToNumber(ticket.State),
-            title: ticket.Title
-
-        }
         return fetch(this.ApiUrl + "/" + ticket.Id + '?newState=' + ticket.State,
             {
                 method: 'PUT',
@@ -249,15 +268,56 @@ class CardBuilder implements ICardBuilder {
         }
     }
 
+
+
+    createTicketSeverityString(type: TicketSeverity) {
+
+        switch (type) {
+
+            case TicketSeverity.veryLow:
+                return "Very Low";
+            case TicketSeverity.low:
+                return "Low";
+            case TicketSeverity.medium:
+                return "Medium";
+            case TicketSeverity.high:
+                return "High";
+            case TicketSeverity.veryHigh:
+                return "Very High";
+            default:
+                throw new InvalidTicketSeverityException();
+        }
+    }
+
     create(aTicket: ITicket): JSX.Element {
 
-        return <a href={"http://localhost:53229/Ticket/Edit/" + aTicket.Id}>
+        let ticketClassName: string;
+        let filePath: string;
+        if (Number(aTicket.Type) === Number(TicketType.bug)) {
+            ticketClassName = "bug";
+            filePath = "../../Content/bug.png";
+        }
+
+        else {
+            ticketClassName = "story";
+            filePath = "../../Content/book.png";
+        }
+
+            
+
+        return <a className="ticket-link" href={"http://localhost:53229/Ticket/Edit/" + aTicket.Id}>
             <div key={aTicket.Id}
-                className={"draggable flex-" + this.createTicketStateString(aTicket.State) + "-ticket"}
+                className={"draggable " + ticketClassName}
                 draggable
                 onDragStart={(e) => this.handler.onDragStart(e, aTicket.Id)}>
 
-                {aTicket.Title}
+                <img src={filePath} alt="bug" />
+
+                <span className="card-title">{aTicket.Title}<br /></span>
+                <span className="card-severity">Priority: {this.createTicketSeverityString(aTicket.Severity)}<br /></span>
+                <span> Created On: {new Date(aTicket.CreationDate).toLocaleDateString()} </span>
+
+
             </div>
         </a>
     }
@@ -295,14 +355,14 @@ class Column implements IColumn {
 
         this.onDropStatusCode = onDropStatusCode;
 
-        if (typeof (Tickets) === "undefined")
+        if (typeof (Tickets) === "undefined")    // replace with default param
             this.Tickets = new Array<ITicket>();
         else
             this.Tickets = Tickets;
 
         this.Title = Title;
 
-        if (typeof (TicketLimit) === "undefined")
+        if (typeof (TicketLimit) === "undefined")    // replace with default param
             this.TicketLimit = 0;
         else
             this.TicketLimit = TicketLimit;

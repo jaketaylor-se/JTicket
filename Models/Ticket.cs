@@ -46,5 +46,9 @@ namespace JTicket.Models
         [Required]
         [JsonConverter(typeof(StringEnumConverter))]
         public TicketState State { get; set; }
+
+        [Required]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public TicketType Type { get; set; }
     }
 }

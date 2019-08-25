@@ -50,6 +50,61 @@
     padding-right: 10px;
 }
 
+a {
+    text-decoration: none !important;
+}
+
+img {
+    max-width: 8%;
+    max-height: 8%;
+    padding-right: 3px;
+    background: #505050;
+}
+
+.card-title{
+    
+    font-weight: bold;
+    font-size: 14px;
+
+}
+
+.card{
+
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.card-title {
+
+}
+
+.story {
+    background-color: #505050;
+    color: #F0FFFF;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    border-left: solid;
+    border-left-color: #7FDBFF;
+    border-left-width: 3px;
+    font-size: 12px;
+}
+
+
+.bug {
+    background-color: #505050;
+    color: #F0FFFF;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    border-left: solid;
+    border-left-color: #ff3a22;
+    border-left-width: 3px;
+    font-size: 12px;
+}
+
 
 .flex-open-ticket {
     background-color: #505050;

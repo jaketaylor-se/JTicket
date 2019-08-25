@@ -301,8 +301,13 @@
     <Compile Include="Migrations\201908131529064_AddedTicketState.Designer.cs">
       <DependentUpon>201908131529064_AddedTicketState.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908221537240_AddedTicketType.cs" />
+    <Compile Include="Migrations\201908221537240_AddedTicketType.Designer.cs">
+      <DependentUpon>201908221537240_AddedTicketType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Enumerations\TicketType.cs" />
     <Compile Include="Models\Enumerations\TicketSeverity.cs" />
     <Compile Include="Models\Enumerations\TicketState.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -314,6 +319,7 @@
     <Compile Include="Views\ViewModels\NewTicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\book.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-lumen.css" />
@@ -322,6 +328,7 @@
     <Content Include="Content\bootstrap-spacelab.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bug.png" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -607,8 +614,23 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <TypeScriptCompile Include="Scripts\react\components\column.tsx" />
+    <TypeScriptCompile Include="Scripts\react\components\card.tsx" />
+    <TypeScriptCompile Include="Scripts\react\contracts\IKanbanBoard.tsx" />
+    <TypeScriptCompile Include="Scripts\react\contracts\IColumn.tsx" />
+    <TypeScriptCompile Include="Scripts\react\contracts\ICard.tsx" />
+    <TypeScriptCompile Include="Scripts\react\contracts\ITicketRepository.tsx" />
+    <TypeScriptCompile Include="Scripts\react\contracts\ITicket.tsx" />
+    <TypeScriptCompile Include="Scripts\react\exceptions\TicketExceptions.tsx" />
+    <TypeScriptCompile Include="Scripts\react\components\KanbanBoard.tsx" />
+    <TypeScriptCompile Include="Scripts\react\implementations\ApiTicketRespository.tsx" />
+    <TypeScriptCompile Include="Scripts\react\implementations\ApiTicket.tsx" />
     <TypeScriptCompile Include="Scripts\react\kanbanBoardApp.tsx" />
-    <TypeScriptCompile Include="Scripts\react\app.tsx" />
+    <TypeScriptCompile Include="Scripts\react\KanbanBoardTickets.tsx" />
+    <TypeScriptCompile Include="Scripts\react\enumerations\TicketSeverity.tsx" />
+    <TypeScriptCompile Include="Scripts\react\enumerations\TicketStateMapper.tsx" />
+    <TypeScriptCompile Include="Scripts\react\enumerations\TicketType.tsx" />
+    <TypeScriptCompile Include="Scripts\react\enumerations\TicketStatus.tsx" />
     <Content Include="Scripts\react\app.js" />
     <Content Include="Scripts\react\dist\bundle.js" />
     <Content Include="Scripts\react\webpack.config.js" />
@@ -692,6 +714,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908131529064_AddedTicketState.resx">
       <DependentUpon>201908131529064_AddedTicketState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908221537240_AddedTicketType.resx">
+      <DependentUpon>201908221537240_AddedTicketType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
